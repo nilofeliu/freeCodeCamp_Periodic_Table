@@ -11,6 +11,7 @@ fi
 # Query the database
 ELEMENT_INFO=$($PSQL "SELECT atomic_number, name, symbol, types.type, atomic_mass, melting_point_celsius, boiling_point_celsius FROM elements INNER JOIN properties USING(atomic_number) INNER JOIN types USING(type_id) WHERE atomic_number::text='$1' OR symbol='$1' OR name='$1'")
 
+
 # Check if element was found
 if [[ -z $ELEMENT_INFO ]]; then
   echo "I could not find that element in the database."
